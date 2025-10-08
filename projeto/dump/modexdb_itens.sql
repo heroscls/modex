@@ -1,3 +1,6 @@
+
+create database modexdb;
+use modexdb;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: modexdb
@@ -18,6 +21,7 @@
 --
 -- Table structure for table `itens`
 --
+
 
 DROP TABLE IF EXISTS `itens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
