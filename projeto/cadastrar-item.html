@@ -15,7 +15,7 @@
         </section>
 
         <section class="container-form">
-            <form action="#">
+            <form action="inserir.php" method="post ">
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" id="nome" placeholder="Digite o nome do produto">
 
@@ -42,6 +42,8 @@
                 
                 <label for="imagem">Envie uma imagem do produto</label>
                 <input type="file" name="imagem" id="imagem" accept="image/*">
+
+                <imput type="hidden" name="id" id="id"></imput> 
                 
                 <input class="botao-cadastrar" type="submit" name="cadastro" value="Cadastrar produto">
 
