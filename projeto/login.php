@@ -69,7 +69,6 @@ $erro = $_GET['erro'] ?? '';
             </section>
 
         <?php
-        endif;
         ?>
     </main>
 
