@@ -96,6 +96,9 @@ $itens = $itemRepositorio->buscarTodos();
                 </tbody>
             </table>
             <a class="botao-cadastrar" href="form.php">Cadastrar item</a>
+            <form action="gerador-pdf.php" method="post" style="display:inline;">
+                <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
+            </form>
         </section>
     </main>
 </body>
