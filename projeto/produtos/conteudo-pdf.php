@@ -1,17 +1,17 @@
 <?php
 require "../src/conexao-bd.php";
-require "../src/Modelo/Item.php";
-require "../src/Repositorio/ItemRepositorio.php";
+require "../src/Modelo/Produto.php";
+require "../src/Repositorio/ProdutoRepositorio.php";
 
 date_default_timezone_set('America/Sao_Paulo'); // ajuste conforme sua timezone
 $rodapeDataHora = date('d/m/Y H:i');
 
-$itemRepositorio = new ItemRepositorio($pdo);
-$items = $itemRepositorio->buscarTodos();
+$produtoRepositorio = new ProdutoRepositorio($pdo);
+$produtos = $produtoRepositorio->buscarTodos();
 
-$imagePath = '../img/logo.jpg';
+$imagePath = '../img/logo.png';
 $imageData = base64_encode(file_get_contents($imagePath));
-$imageSrc = 'data:image/jpeg;base64,' . $imageData;
+$imageSrc = 'data:image/png;base64,' . $imageData;
 
 
 ?>
@@ -91,35 +91,27 @@ $imageSrc = 'data:image/jpeg;base64,' . $imageData;
     }
 </style>
 </head>
-<img src="<?= $imageSrc ?>" class="pdf-img" alt="logo-granato">
+<img src="<?= $imageSrc ?>" class="pdf-img" alt="logo-modex">
 
 
-<h3>Listagem de Items</h3>
+<h3>Listagem de produtos</h3>
 
 <table>
     <thead>
         <tr>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Tamanho</th>
-            <th>Cor</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Descrição</th>
-            <th>Data de Registro</th>
+            <th>Produto</th>
+            <th>Tipo</th>
+            <th>Descricão</th>
+            <th>Valor</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($items as $item): ?>
+        <?php foreach ($produtos as $produto): ?>
             <tr>
-                <td><?= $item->getNome() ?></td>
-                <td><?= $item->getCategoria() ?></td>
-                <td><?= $item->getTamanho() ?></td>
-                <td><?= $item->getCor() ?></td>
-                <td><?= $item->getPreco() ?></td>
-                <td><?= $item->getEstoque() ?></td>
-                <td><?= $item->getDescricao() ?></td>
-                <td><?= $item->getDataRegistro() ?></td>
+                <td><?= $produto->getNome() ?></td>
+                <td><?= $produto->getTipo() ?></td>
+                <td><?= $produto->getDescricao() ?></td>
+                <td><?= $produto->getPrecoFormatado() ?></td>
             </tr>
         <?php endforeach; ?>
 

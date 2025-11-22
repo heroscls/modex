@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../Modelo/Usuario.php';
+
 class UsuarioRepositorio
 {
     private PDO $pdo;

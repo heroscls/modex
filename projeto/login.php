@@ -40,6 +40,9 @@ $erro = $_GET['erro'] ?? '';
             <section class="container-admin-banner">
                 <img src="img/logo.png" class="logo-admin" alt="Modex">
                 <h1>Login Modex</h1>
+                <div style="margin-top:8px;">
+                    <a href="index.php" class="botao-voltar">Voltar ao site</a>
+                </div>
             </section>
             <section class="container-form">
                 <div class="form-wrapper">

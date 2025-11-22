@@ -9,6 +9,11 @@ if (!$usuarioLogado) {
     header('Location: login.php');
     exit;
 }
+// Restrict dashboard access to administrators only
+if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] !== 'Admin') {
+    header('Location: index.php');
+    exit;
+}
 
 function pode(string $perm): bool
 {
@@ -31,13 +36,15 @@ function pode(string $perm): bool
 <header class="container-admin">
     <div class="topo-direita">
         <span>Bem-vindo, <?php echo htmlspecialchars($usuarioLogado); ?></span>
+        <a href="index.php" class="botao-voltar" style="margin-left:12px;margin-right:8px;">Voltar ao site</a>
         <form action="logout.php" method="post" style="display:inline;">
             <button type="submit" class="botao-sair">Sair</button>
         </form>
     </div>
     <nav class="menu-adm">
         <a href="dashboard.php">Dashboard</a>
-        <a href="itens/listar.php">Itens</a>
+        <a href="produtos/listar.php">Produtos</a>
+        <a href="avaliacoes/listar.php">Avaliações</a>
         <?php if (pode('usuarios.listar')): ?>
         <a href="usuarios/listar.php">Usuários</a>
         <?php endif; ?>
@@ -59,12 +66,20 @@ function pode(string $perm): bool
                     <p>Gerenciar e cadastrar usuários.</p>
                 </a>
             <?php endif; ?>
-            <?php if (pode('itens.listar')): ?>
-                <a class="card card-itens" href="itens/listar.php">
-                    <h2>Itens</h2>
-                    <p>Listar e gerenciar itens.</p>
+            <?php if (pode('produtos.listar')): ?>
+                <a class="card card-itens" href="produtos/listar.php">
+                    <h2>Produtos</h2>
+                    <p>Listar e gerenciar produtos.</p>
                 </a>
             <?php endif; ?>
+            <a class="card card-avaliacoes" href="avaliacoes/listar.php">
+                <h2>Avaliações</h2>
+                <p>Listar e gerenciar avaliações dos produtos.</p>
+            </a>
+            <a class="card card-pedidos" href="pedidos/listar.php">
+                <h2>Pedidos</h2>
+                <p>Listar e gerenciar pedidos realizados.</p>
+            </a>
         </section>
     </main>
 </body>

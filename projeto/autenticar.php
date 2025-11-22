@@ -29,8 +29,9 @@ if ($repo->autenticar($email, $senha)) {
     
     $perfil = $usuario->getPerfil();
     $_SESSION['usuario'] = $email;
-    $_SESSION['permissoes'] = $perfil === 'Admin' ? ['usuarios.listar',  'itens.listar'] : ['itens.listar'];
-    header('Location: dashboard.php');
+    $_SESSION['perfil'] = $perfil;
+    $_SESSION['permissoes'] = $perfil === 'Admin' ? ['usuarios.listar',  'produtos.listar'] : ['produtos.listar'];
+    header('Location: index.php');
     exit;
 }
 

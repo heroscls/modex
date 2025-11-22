@@ -40,7 +40,7 @@ O site será dividido em páginas simples, com as seguintes funções:
     Página de login e cadastro: onde o usuário pode se registrar ou entrar com sua conta;
     Página de listagem de produtos: exibe todos os produtos cadastrados, com filtros por categoria e estilo;
     Filtros: o usuário pode selecionar uma categoria (ex: “Camisa”) e depois escolher um estilo (ex: “Streetwear”) para ver apenas as roupas que se encaixam nesse filtro;
-    Página de detalhes do produto: ao clicar em um item, o usuário pode ver informações completas da roupa, como descrição, preço, tamanho, estilo e uma imagem.
+    Página de detalhes do produto: ao clicar em um produto, o usuário pode ver informações completas da roupa, como descrição, preço, tamanho, estilo e uma imagem.
 
 
 Modelagem do Banco de Dados – DER

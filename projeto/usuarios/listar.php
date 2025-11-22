@@ -42,7 +42,7 @@ $usuarios = $usuarioRepositorio->buscarTodos();
         </div>
         <nav class="menu-adm">
             <a href="../dashboard.php">Dashboard</a>
-            <a href="../itens/listar.php">Itens</a>
+            <a href="../produtos/listar.php">Produtos</a>
             <a href="../usuarios/listar.php">Usuários</a>
         </nav>
         <div class="container-admin-banner">
@@ -83,6 +83,9 @@ $usuarios = $usuarioRepositorio->buscarTodos();
                 </tbody>
             </table>
             <a class="botao-cadastrar" href="form.php">Cadastrar usuário</a>
+            <form action="gerador-pdf.php" method="post" style="display:inline; margin-left:8px;">
+                <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
+            </form>
         </section>
     </main>
 </body>
