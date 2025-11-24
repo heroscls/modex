@@ -4,6 +4,7 @@ require "../src/Modelo/Avaliacao.php";
 require "../src/Repositorio/AvaliacaoRepositorio.php";
 require "../src/Repositorio/ProdutoRepositorio.php";
 require "../src/Repositorio/UsuarioRepositorio.php";
+require "../src/helpers.php";
 
 date_default_timezone_set('America/Sao_Paulo');
 $rodapeDataHora = date('d/m/Y H:i');
@@ -56,7 +57,7 @@ $imageSrc = 'data:image/png;base64,' . $imageData;
                 <td><?= htmlspecialchars($usuario ? $usuario->getNome() : ($a->getUsuarioId() ?? '—')) ?></td>
                 <td><?= htmlspecialchars($a->getNota()) ?></td>
                 <td><?= htmlspecialchars($a->getComentario()) ?></td>
-                <td><?= htmlspecialchars($a->getDataRegistro()) ?></td>
+                <td><?= htmlspecialchars(formatDateTimeBR($a->getDataRegistro())) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

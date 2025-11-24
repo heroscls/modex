@@ -9,6 +9,7 @@ require __DIR__ . "/../src/conexao-bd.php";
 require __DIR__ . "/../src/Modelo/Avaliacao.php";
 require __DIR__ . "/../src/Repositorio/AvaliacaoRepositorio.php";
 require __DIR__ . "/../src/Repositorio/ProdutoRepositorio.php";
+require __DIR__ . "/../src/helpers.php";
 
 $repo = new AvaliacaoRepositorio($pdo);
 $produtoRepo = new ProdutoRepositorio($pdo);
@@ -19,8 +20,8 @@ $avaliacoes = $repo->buscarTodos();
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
     <title>Avaliações</title>
 </head>
 <body>
@@ -53,7 +54,7 @@ $avaliacoes = $repo->buscarTodos();
                         <td><?= htmlspecialchars($avaliacao->getUsuarioId()) ?></td>
                         <td><?= htmlspecialchars($avaliacao->getNota()) ?></td>
                         <td><?= htmlspecialchars($avaliacao->getComentario()) ?></td>
-                        <td><?= htmlspecialchars($avaliacao->getDataRegistro()) ?></td>
+                        <td><?= htmlspecialchars(formatDateTimeBR($avaliacao->getDataRegistro())) ?></td>
                         <td><a class="botao-editar" href="form.php?id=<?= $avaliacao->getId() ?>">Editar</a></td>
                         <td>
                             <form action="excluir.php" method="post">
@@ -66,7 +67,7 @@ $avaliacoes = $repo->buscarTodos();
                 </tbody>
             </table>
             <a class="botao-cadastrar" href="form.php">Cadastrar avaliação</a>
-            <form action="gerador-pdf.php" method="post" style="display:inline; margin-left:8px;">
+            <form action="gerador-pdf.php" method="post" class="inline-form ml-8">
                 <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
             </form>
         </section>

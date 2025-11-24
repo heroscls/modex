@@ -65,11 +65,11 @@ class Produto
         // procura primeiro na pasta uploads (onde salvar.php grava)
         $uploadsPath = __DIR__ . '/../../uploads/';
         if ($this->imagem && file_exists($uploadsPath . $this->imagem)) {
-            return 'uploads/' . $this->imagem;
+            return '/modex/projeto/uploads/' . $this->imagem;
         }
 
         // caso falhe, usa imagem padrão na pasta img/
-        return 'img/' . ($this->imagem ?? 'logo.png');
+        return '/modex/projeto/img/' . ($this->imagem ?? 'logo.png');
     }
 
     public function getPreco(): float

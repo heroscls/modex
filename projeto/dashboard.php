@@ -27,17 +27,17 @@ function pode(string $perm): bool
     <meta charset="UTF-8">
     <title>Dashboard - Modex</title>
     <link rel="icon" href="img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reset.css?v=<?= filemtime(__DIR__ . '/css/reset.css') ?>">
+    <link rel="stylesheet" href="css/admin.css?v=<?= filemtime(__DIR__ . '/css/admin.css') ?>">
+    <link rel="stylesheet" href="css/dashboard.css?v=<?= filemtime(__DIR__ . '/css/dashboard.css') ?>">
 </head>
 
 <body class="pagina-dashboard">
 <header class="container-admin">
     <div class="topo-direita">
         <span>Bem-vindo, <?php echo htmlspecialchars($usuarioLogado); ?></span>
-        <a href="index.php" class="botao-voltar" style="margin-left:12px;margin-right:8px;">Voltar ao site</a>
-        <form action="logout.php" method="post" style="display:inline;">
+        <a href="index.php" class="botao-voltar ml-12 mr-8">Voltar ao site</a>
+        <form action="logout.php" method="post" class="inline-form">
             <button type="submit" class="botao-sair">Sair</button>
         </form>
     </div>
@@ -45,6 +45,7 @@ function pode(string $perm): bool
         <a href="dashboard.php">Dashboard</a>
         <a href="produtos/listar.php">Produtos</a>
         <a href="avaliacoes/listar.php">Avaliações</a>
+        <a href="pedidos/listar.php">Pedidos</a>
         <?php if (pode('usuarios.listar')): ?>
         <a href="usuarios/listar.php">Usuários</a>
         <?php endif; ?>

@@ -25,8 +25,9 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="utf-8">
     <title>Endereço - Formulário</title>
-    <link rel="stylesheet" href="/modex/projeto/css/form.css">
-    <link rel="stylesheet" href="/modex/projeto/css/index.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/form.css?v=<?= filemtime(__DIR__ . '/../css/form.css') ?>">
+    <link rel="stylesheet" href="../css/index.css?v=<?= filemtime(__DIR__ . '/../css/index.css') ?>">
 </head>
 <body>
 <div class="container">

@@ -15,11 +15,11 @@ $textoBotao   = 'Registrar Usuário';
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($tituloPagina) ?> - Modex</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/reset.css?v=<?= filemtime(__DIR__ . '/css/reset.css') ?>">
+    <link rel="stylesheet" href="css/index.css?v=<?= filemtime(__DIR__ . '/css/index.css') ?>">
+    <link rel="stylesheet" href="css/admin.css?v=<?= filemtime(__DIR__ . '/css/admin.css') ?>">
+    <link rel="stylesheet" href="css/form.css?v=<?= filemtime(__DIR__ . '/css/form.css') ?>">
+    <link rel="stylesheet" href="css/login.css?v=<?= filemtime(__DIR__ . '/css/login.css') ?>">
 </head>
 
 <body>

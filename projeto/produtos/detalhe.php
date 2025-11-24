@@ -36,9 +36,9 @@ if (strpos($img, '../') !== 0 && strpos($img, '/') !== 0) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/form.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/form.css?v=<?= filemtime(__DIR__ . '/../css/form.css') ?>">
+    <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
     <title><?= htmlspecialchars($produto->getNome()) ?> - Modex</title>
     <style>
         .detalhe-container{max-width:980px;margin:24px auto;padding:0 12px}
@@ -47,14 +47,14 @@ if (strpos($img, '../') !== 0 && strpos($img, '/') !== 0) {
     </style>
 </head>
 <body>
-    <header style="padding:12px 16px;">
-        <a href="../index.php"><img src="../img/logo.png" alt="Modex" style="max-width:180px;"></a>
+    <header class="site-header">
+        <a href="../index.php"><img src="../img/logo.png" alt="Modex" class="site-logo"></a>
     </header>
     <main class="detalhe-container">
-        <a href="../index.php" class="botao-voltar" style="display:inline-block;margin-bottom:12px;">&larr; Voltar ao catálogo</a>
+        <a href="../index.php" class="botao-voltar">&larr; Voltar ao catálogo</a>
         <div class="detalhe-grid">
             <div class="detalhe-imagem">
-                <img src="<?= htmlspecialchars($img) ?>" alt="<?= htmlspecialchars($produto->getNome()) ?>" style="width:100%;height:360px;object-fit:contain;">
+                <img src="<?= htmlspecialchars($img) ?>" alt="<?= htmlspecialchars($produto->getNome()) ?>">
             </div>
             <div>
                 <h1><?= htmlspecialchars($produto->getNome()) ?></h1>
@@ -63,8 +63,8 @@ if (strpos($img, '../') !== 0 && strpos($img, '/') !== 0) {
                 <p><strong>Preço:</strong> <?= htmlspecialchars($produto->getPrecoFormatado()) ?></p>
                 <p><strong>Descrição:</strong><br><?= nl2br(htmlspecialchars($produto->getDescricao())) ?></p>
 
-                <div style="margin-top:18px;">
-                    <a href="../index.php" class="botao-voltar" style="margin-right:8px;">Voltar</a>
+                <div class="mt-18">
+                    <a href="../index.php" class="botao-voltar mr-8">Voltar</a>
                     <a class="botao-cadastrar" href="../finalizar_pedido.php?id=<?= $produto->getId() ?>">Comprar</a>
                 </div>
             </div>

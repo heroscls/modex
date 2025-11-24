@@ -41,8 +41,8 @@ $titulo = $modoEdicao ? 'Editar Avaliação' : 'Cadastrar Avaliação';
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/form.css?v=<?= filemtime(__DIR__ . '/../css/form.css') ?>">
     <title><?= htmlspecialchars($titulo) ?></title>
 </head>
 <body>

@@ -53,21 +53,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finalizar'])) {
     <!doctype html>
     <html lang="pt-br">
     <head><meta charset="utf-8"><title>Pedido finalizado - Modex</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/reset.css?v=<?= filemtime(__DIR__ . '/css/reset.css') ?>">
+    <link rel="stylesheet" href="css/form.css?v=<?= filemtime(__DIR__ . '/css/form.css') ?>">
+    <link rel="stylesheet" href="css/admin.css?v=<?= filemtime(__DIR__ . '/css/admin.css') ?>">
     </head>
-    <body style="padding:24px;">
-        <h2>Compra finalizada</h2>
-        <p>Obrigado! Seu pedido foi processado com sucesso.</p>
-        <p><strong>Pedido ID:</strong> <?= $pedidoId ?></p>
-        <p><strong>Produto:</strong> <?= htmlspecialchars($produto->getNome()) ?></p>
-        <p><strong>Quantidade:</strong> <?= $quantidade ?></p>
-        <p><strong>Total:</strong> <?= htmlspecialchars('R$ ' . number_format($total, 2)) ?></p>
-        <?php if ($endereco): ?>
-            <h3>Endereço de entrega</h3>
-            <p><?= htmlspecialchars($endereco->formatar()) ?></p>
-        <?php endif; ?>
-        <a class="botao-cadastrar" href="index.php">Voltar ao catálogo</a>
+    <body>
+        <header class="site-header">
+            <a href="index.php"><img src="img/logo.png" alt="Modex" class="site-logo"></a>
+        </header>
+        <main class="pedido-wrap">
+            <h2>Compra finalizada</h2>
+            <div class="pedido-card">
+                <div class="pedido-media">
+                    <img src="<?= htmlspecialchars($produto->getImagemDiretorio()) ?>" alt="<?= htmlspecialchars($produto->getNome()) ?>">
+                    <div class="pedido-detalhes">
+                        <p><strong>Pedido ID:</strong> <?= $pedidoId ?></p>
+                        <p><strong>Produto:</strong> <?= htmlspecialchars($produto->getNome()) ?></p>
+                        <p><strong>Quantidade:</strong> <?= $quantidade ?></p>
+                        <p><strong>Total:</strong> <?= htmlspecialchars('R$ ' . number_format($total, 2)) ?></p>
+                        <?php if ($endereco): ?>
+                            <h3>Endereço de entrega</h3>
+                            <p><?= htmlspecialchars($endereco->formatar()) ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="pedido-actions">
+                    <a class="botao-voltar" href="index.php">Voltar ao catálogo</a>
+                </div>
+            </div>
+        </main>
     </body>
     </html>
     <?php
@@ -92,31 +106,34 @@ if (!$produto) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/reset.css?v=<?= filemtime(__DIR__ . '/css/reset.css') ?>">
+    <link rel="stylesheet" href="css/form.css?v=<?= filemtime(__DIR__ . '/css/form.css') ?>">
+    <link rel="stylesheet" href="css/admin.css?v=<?= filemtime(__DIR__ . '/css/admin.css') ?>">
     <title>Finalizar Pedido - Modex</title>
-    <style>
-        .pedido-wrap{max-width:720px;margin:28px auto;padding:0 12px}
-        .pedido-card{border:1px solid #e2e2e2;padding:16px;border-radius:6px;background:#fff}
-    </style>
+    <!-- styles moved to css/form.css -->
+
 </head>
 <body>
-    <header style="padding:12px 16px;">
-        <a href="index.php"><img src="img/logo.png" alt="Modex" style="max-width:160px;"></a>
+    <header class="site-header">
+        <a href="index.php"><img src="img/logo.png" alt="Modex" class="site-logo"></a>
     </header>
     <main class="pedido-wrap">
         <h2>Finalizar Pedido</h2>
-        <div class="pedido-card">
-            <p><strong>Produto:</strong> <?= htmlspecialchars($produto->getNome()) ?></p>
-            <p><strong>Preço unitário:</strong> <?= htmlspecialchars($produto->getPrecoFormatado()) ?></p>
-            <form method="post">
+            <div class="pedido-card">
+            <div class="pedido-media">
+                <img src="<?= htmlspecialchars($produto->getImagemDiretorio()) ?>" alt="<?= htmlspecialchars($produto->getNome()) ?>">
+                <div class="pedido-detalhes">
+                    <p><strong>Produto:</strong> <?= htmlspecialchars($produto->getNome()) ?></p>
+                    <p><strong>Preço unitário:</strong> <?= htmlspecialchars($produto->getPrecoFormatado()) ?></p>
+                </div>
+            </div>
+            <form method="post" class="form-produto">
                 <input type="hidden" name="produto_id" value="<?= $produto->getId() ?>">
                 <div>
                     <label for="quantidade">Quantidade</label>
                     <input id="quantidade" name="quantidade" type="number" min="1" value="1">
                 </div>
-                <div style="margin-top:12px;">
+                <div class="mt-12">
                     <label>Endereço de entrega</label>
                     <?php $enderecos = $enderecoRepo->buscarPorUsuario($usuario->getId()); ?>
                     <?php if (count($enderecos) === 0): ?>
@@ -129,11 +146,11 @@ if (!$produto) {
                                 </label>
                             </div>
                         <?php endforeach; ?>
-                        <div style="margin-top:8px;"><a href="enderecos/form.php">Adicionar outro endereço</a></div>
+                        <div class="mt-8"><a href="enderecos/form.php">Adicionar outro endereço</a></div>
                     <?php endif; ?>
                 </div>
-                <div style="margin-top:12px;">
-                    <a href="index.php" class="botao-voltar" style="margin-right:8px;">Cancelar</a>
+                <div class="pedido-actions">
+                    <a href="index.php" class="botao-voltar">Cancelar</a>
                     <button type="submit" name="finalizar" class="botao-cadastrar">Finalizar Compra</button>
                 </div>
             </form>

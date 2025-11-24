@@ -13,11 +13,11 @@ $erro = $_GET['erro'] ?? '';
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/reset.css?v=<?= filemtime(__DIR__ . '/css/reset.css') ?>">
+    <link rel="stylesheet" href="css/index.css?v=<?= filemtime(__DIR__ . '/css/index.css') ?>">
+    <link rel="stylesheet" href="css/admin.css?v=<?= filemtime(__DIR__ . '/css/admin.css') ?>">
+    <link rel="stylesheet" href="css/form.css?v=<?= filemtime(__DIR__ . '/css/form.css') ?>">
+    <link rel="stylesheet" href="css/login.css?v=<?= filemtime(__DIR__ . '/css/login.css') ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,10 +37,10 @@ $erro = $_GET['erro'] ?? '';
             });
         });
     </script>
-            <section class="container-admin-banner">
+            <section class="container-admin-banner login-banner">
                 <img src="img/logo.png" class="logo-admin" alt="Modex">
                 <h1>Login Modex</h1>
-                <div style="margin-top:8px;">
+                <div class="mt-8">
                     <a href="index.php" class="botao-voltar">Voltar ao site</a>
                 </div>
             </section>

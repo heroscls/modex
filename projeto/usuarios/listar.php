@@ -24,8 +24,8 @@ $usuarios = $usuarioRepositorio->buscarTodos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap"
         rel="stylesheet">
@@ -36,7 +36,8 @@ $usuarios = $usuarioRepositorio->buscarTodos();
     <header class="container-admin">
         <div class="topo-direita">
             <span>Bem-vindo, <?php echo htmlspecialchars($usuarioLogado); ?></span>
-            <form action="../logout.php" method="post" style="display:inline;">
+            <a href="../index.php" class="botao-voltar ml-12 mr-8">Voltar ao site</a>
+            <form action="../logout.php" method="post" class="inline-form">
                 <button type="submit" class="botao-sair">Sair</button>
             </form>
         </div>
@@ -82,10 +83,12 @@ $usuarios = $usuarioRepositorio->buscarTodos();
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <a class="botao-cadastrar" href="form.php">Cadastrar usuário</a>
-            <form action="gerador-pdf.php" method="post" style="display:inline; margin-left:8px;">
-                <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
-            </form>
+            <div class="acoes-superiores">
+                <a class="botao-cadastrar" href="form.php">Cadastrar usuário</a>
+                <form action="gerador-pdf.php" method="post" class="inline-form">
+                    <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
+                </form>
+            </div>
         </section>
     </main>
 </body>

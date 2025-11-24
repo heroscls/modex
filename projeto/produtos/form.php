@@ -84,17 +84,17 @@ $actionForm   = $modoEdicao ? 'salvar.php' : 'salvar.php';
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($tituloPagina) ?> - Modex</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/index.css?v=<?= filemtime(__DIR__ . '/../css/index.css') ?>">
+    <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
+    <link rel="stylesheet" href="../css/form.css?v=<?= filemtime(__DIR__ . '/../css/form.css') ?>">
 </head>
 
 <body>
     <header class="container-admin">
         <div class="topo-direita">
             <span>Bem-vindo, <?php echo htmlspecialchars($usuarioLogado); ?></span>
-            <form action="../logout.php" method="post" style="display:inline;">
+            <form action="../logout.php" method="post" class="inline-form">
                 <button type="submit" class="botao-sair">Sair</button>
             </form>
         </div>
@@ -168,7 +168,7 @@ $actionForm   = $modoEdicao ? 'salvar.php' : 'salvar.php';
                     <div class="preview-imagem">
                         <!-- Ajuste o caminho conforme onde você armazena as imagens (ex: ../uploads/) -->
                         <p>Imagem atual: <?= htmlspecialchars($valorImagem) ?></p>
-                        <img src="<?= htmlspecialchars('../uploads/' . $valorImagem) ?>" alt="Imagem do produto" style="max-width:200px;display:block;margin-top:8px;">
+                        <img src="<?= htmlspecialchars('../uploads/' . $valorImagem) ?>" alt="Imagem do produto" class="img-preview">
                         <!-- Mantém o nome da imagem atual caso o usuário não envie nova -->
                         <input type="hidden" name="imagem_existente" value="<?= htmlspecialchars($valorImagem) ?>">
                     </div>

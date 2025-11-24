@@ -11,6 +11,7 @@ require __DIR__ . "/../src/Repositorio/PedidoRepositorio.php";
 require __DIR__ . "/../src/Repositorio/ProdutoRepositorio.php";
 require __DIR__ . "/../src/Repositorio/UsuarioRepositorio.php";
 require __DIR__ . "/../src/Repositorio/EnderecoRepositorio.php";
+require __DIR__ . "/../src/helpers.php";
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if (!$id) {
@@ -38,8 +39,8 @@ $endereco = $pedido->getEnderecoId() ? $enderecoRepo->buscar($pedido->getEnderec
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
     <title>Detalhe do Pedido #<?= htmlspecialchars($pedido->getId()) ?></title>
     <style>
         .detalhe-wrap{max-width:900px;margin:28px auto;padding:12px}
@@ -65,7 +66,7 @@ $endereco = $pedido->getEnderecoId() ? $enderecoRepo->buscar($pedido->getEnderec
                     <p><strong>Preço unitário:</strong> <?= htmlspecialchars($produto ? $produto->getPrecoFormatado() : '—') ?></p>
                     <p><strong>Quantidade:</strong> <?= htmlspecialchars($pedido->getQuantidade()) ?></p>
                     <p><strong>Total:</strong> <?= 'R$ ' . number_format($pedido->getTotal(), 2) ?></p>
-                    <p><strong>Data:</strong> <?= htmlspecialchars($pedido->getDataRegistro()) ?></p>
+                    <p><strong>Data:</strong> <?= htmlspecialchars(formatDateTimeBR($pedido->getDataRegistro())) ?></p>
                 </div>
             </div>
             <hr>

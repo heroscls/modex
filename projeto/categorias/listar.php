@@ -23,8 +23,8 @@ $categorias = $categoriaRepositorio->buscarTodos();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+  <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
   <link rel="icon" href="../img/icone-granato.png" type="image/x-icon">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap"
@@ -36,7 +36,7 @@ $categorias = $categoriaRepositorio->buscarTodos();
   <header class="container-admin">
     <div class="topo-direita">
       <span>Bem-vindo, <?php echo htmlspecialchars($usuarioLogado); ?></span>
-      <form action="../logout.php" method="post" style="display:inline;">
+      <form action="../logout.php" method="post" class="inline-form">
         <button type="submit" class="botao-sair">Sair</button>
       </form>
     </div>
@@ -80,7 +80,7 @@ $categorias = $categoriaRepositorio->buscarTodos();
         </tbody>
       </table>
       <a class="botao-cadastrar" href="form.php">Cadastrar categoria</a>
-      <form action="gerador-pdf.php" method="post" style="display:inline;">
+      <form action="gerador-pdf.php" method="post" class="inline-form">
         <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
       </form>
     </section>

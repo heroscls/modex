@@ -21,9 +21,20 @@ $enderecos = $enderecoRepo->buscarPorUsuario($usuario->getId());
 <head>
     <meta charset="utf-8">
     <title>Meus Endereços</title>
-    <link rel="stylesheet" href="/modex/projeto/css/index.css">
+    <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+    <link rel="stylesheet" href="../css/index.css?v=<?= filemtime(__DIR__ . '/../css/index.css') ?>">
+    <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
 </head>
 <body>
+<header class="container-admin">
+    <div class="topo-direita">
+        <span>Meus Endereços</span>
+        <a href="../index.php" class="botao-voltar ml-12 mr-8">Voltar ao site</a>
+        <form action="../logout.php" method="post" class="inline-form">
+            <button type="submit" class="botao-sair">Sair</button>
+        </form>
+    </div>
+</header>
 <div class="container">
     <h1>Meus Endereços</h1>
     <a href="form.php">Adicionar novo</a>

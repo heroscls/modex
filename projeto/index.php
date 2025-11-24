@@ -12,37 +12,39 @@ $produtos = $produtoRepo->buscarTodos();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/reset.css?v=<?= filemtime(__DIR__ . '/css/reset.css') ?>">
+    <link rel="stylesheet" href="css/index.css?v=<?= filemtime(__DIR__ . '/css/index.css') ?>">
+    <link rel="stylesheet" href="css/admin.css?v=<?= filemtime(__DIR__ . '/css/admin.css') ?>">
     <title>Modex - Catálogo</title>
 </head>
 <body>
-    <header style="display:flex;align-items:center;justify-content:space-between;padding:12px 18px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-            <a href="index.php"><img src="img/logo.png" alt="Modex" style="max-width:220px;"></a>
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.php"><img src="img/logo.png" alt="Modex" class="site-logo"></a>
         </div>
-        <div style="display:flex;gap:8px;align-items:center;">
+        <div class="header-right">
             <?php if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'Admin'): ?>
-                <a href="dashboard.php" style="padding:8px 12px;background:#28a745;color:#fff;border-radius:4px;text-decoration:none;">Painel</a>
+                <a href="dashboard.php" class="btn-header btn-primary-header">Painel</a>
             <?php endif; ?>
-            <a href="login.php" style="padding:8px 12px;background:#0b63c3;color:#fff;border-radius:4px;text-decoration:none;">Login</a>
-            <a href="registrar.php" style="padding:8px 12px;border:1px solid #0b63c3;color:#0b63c3;border-radius:4px;text-decoration:none;">Registrar</a>
+            <a href="login.php" class="btn-header btn-primary-header">Login</a>
+            <a href="registrar.php" class="btn-header btn-outline-header">Registrar</a>
         </div>
     </header>
 
-    <main style="padding: 0 16px 40px;">
-        <h2 style="text-align:center;margin-bottom:18px;">Catálogo de Roupas</h2>
+    <main class="main-content">
+        <h2 class="titulo-central">Catálogo de Roupas</h2>
 
-        <section class="catalogo-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;">
+        <section class="catalogo-grid">
             <?php foreach ($produtos as $p): ?>
                 <?php $img = $p->getImagemDiretorio(); ?>
-                <div class="produto-card" style="border:1px solid #e2e2e2;padding:12px;border-radius:6px;text-align:center;background:#fff;">
-                        <a href="detalhe_pedido.php?id=<?= $p->getId() ?>" style="color:inherit;text-decoration:none;">
-                        <div style="height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                            <img src="<?= htmlspecialchars($img) ?>" alt="<?= htmlspecialchars($p->getNome()) ?>" style="max-width:100%;max-height:100%;object-fit:contain;">
+                <div class="container-produto">
+                    <a href="detalhe_pedido.php?id=<?= $p->getId() ?>" class="link-reset">
+                        <div class="produto-media">
+                            <img src="<?= htmlspecialchars($img) ?>" alt="<?= htmlspecialchars($p->getNome()) ?>">
                         </div>
-                        <h3 style="font-size:1rem;margin:8px 0 0;"><?= htmlspecialchars($p->getNome()) ?></h3>
+                        <div class="produto-info">
+                            <h3><?= htmlspecialchars($p->getNome()) ?></h3>
+                        </div>
                     </a>
                 </div>
             <?php endforeach; ?>

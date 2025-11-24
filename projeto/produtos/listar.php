@@ -91,8 +91,8 @@ function buscarNomeCategoria($id, $categorias)
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/reset.css?v=<?= filemtime(__DIR__ . '/../css/reset.css') ?>">
+  <link rel="stylesheet" href="../css/admin.css?v=<?= filemtime(__DIR__ . '/../css/admin.css') ?>">
   <link rel="icon" href="../img/logo.png" type="image/x-icon">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap"
@@ -104,7 +104,8 @@ function buscarNomeCategoria($id, $categorias)
   <header class="container-admin">
     <div class="topo-direita">
       <span>Bem-vindo, <?php echo htmlspecialchars($usuarioLogado); ?></span>
-      <form action="../logout.php" method="post" style="display:inline;">
+      <a href="../index.php" class="botao-voltar ml-12 mr-8">Voltar ao site</a>
+      <form action="../logout.php" method="post" class="inline-form">
         <button type="submit" class="botao-sair">Sair</button>
       </form>
     </div>
@@ -118,9 +119,8 @@ function buscarNomeCategoria($id, $categorias)
         <img src="../img/logo.png" alt="Modex" class="logo-admin">
       </a>
     </div>
-
-
   </header>
+
   <main>
     <h2>Lista de Produtos</h2>
     <?php if (!empty($_SESSION['mensagem_ok'])): ?>
@@ -131,6 +131,7 @@ function buscarNomeCategoria($id, $categorias)
       <p class="mensagem-erro"><?php echo htmlspecialchars($_SESSION['mensagem_erro']); ?></p>
       <?php unset($_SESSION['mensagem_erro']); ?>
     <?php endif; ?>
+
    <form class="form-paginacao" method="GET" action="">
     <label for="itens_por_pagina">Itens por página:</label>
     <select name="itens_por_pagina" id="itens_por_pagina" onchange="this.form.submit()">
@@ -153,12 +154,12 @@ function buscarNomeCategoria($id, $categorias)
             <th>Tipo</th>
             <th>Categoria</th>
             <th>
-              <a href="<?= gerarUrlOrdenacao('descricao', $pagina_atual, $ordem, $direcao, $itens_por_pagina) ?>" style="color: inherit; text-decoration: none;">
+              <a href="<?= gerarUrlOrdenacao('descricao', $pagina_atual, $ordem, $direcao, $itens_por_pagina) ?>" class="link-reset">
                 Descrição <?= mostrarIconeOrdenacao('descricao', $ordem, $direcao) ?>
               </a>
             </th>
             <th>
-              <a href="<?= gerarUrlOrdenacao('preco', $pagina_atual, $ordem, $direcao, $itens_por_pagina) ?>" style="color: inherit; text-decoration: none;">
+              <a href="<?= gerarUrlOrdenacao('preco', $pagina_atual, $ordem, $direcao, $itens_por_pagina) ?>" class="link-reset">
                 Valor <?= mostrarIconeOrdenacao('preco', $ordem, $direcao) ?>
               </a>
             </th>
@@ -175,7 +176,7 @@ function buscarNomeCategoria($id, $categorias)
               <td><?= htmlspecialchars($produto->getPrecoFormatado()) ?></td>
               <td><a class="botao-editar" href="form.php?id=<?= $produto->getId() ?>">Editar</a></td>
               <td>
-                <form action="excluir.php" method="post" style="display:inline;">
+                <form action="excluir.php" method="post" class="inline-form">
                   <input type="hidden" name="id" value="<?= $produto->getId() ?>">
                   <input type="submit" class="botao-excluir" value="Excluir">
                 </form>
@@ -211,7 +212,7 @@ function buscarNomeCategoria($id, $categorias)
 
 
       <a class="botao-cadastrar" href="form.php">Cadastrar produto</a>
-      <form action="gerador-pdf.php" method="post" style="display:inline;">
+      <form action="gerador-pdf.php" method="post" class="inline-form">
         <input type="submit" class="botao-cadastrar" value="Baixar Relatório">
       </form>
     </section>
